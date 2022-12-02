@@ -1,0 +1,60 @@
+{
+  "name": "@spartacus/setup",
+  "version": "5.0.0",
+  "description": "Includes features that makes Spartacus and it's setup easier and streamlined.",
+  "keywords": [
+    "spartacus",
+    "framework",
+    "storefront",
+    "setup",
+    "recipe"
+  ],
+  "homepage": "https://github.com/SAP/spartacus",
+  "repository": "https://github.com/SAP/spartacus/tree/develop/core-libs/setup",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "tslib": "^2.4.0"
+  },
+  "peerDependencies": {
+    "@angular/core": "^14.2.3",
+    "@spartacus/cart": "5.0.0",
+    "@spartacus/core": "5.0.0",
+    "@spartacus/order": "5.0.0",
+    "@spartacus/user": "5.0.0"
+  },
+  "optionalDependencies": {
+    "@nguniversal/express-engine": "^14.0.0",
+    "express": "^4.15.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "module": "fesm2015/spartacus-setup.mjs",
+  "es2020": "fesm2020/spartacus-setup.mjs",
+  "esm2020": "esm2020/spartacus-setup.mjs",
+  "fesm2020": "fesm2020/spartacus-setup.mjs",
+  "fesm2015": "fesm2015/spartacus-setup.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/spartacus-setup.mjs",
+      "es2020": "./fesm2020/spartacus-setup.mjs",
+      "es2015": "./fesm2015/spartacus-setup.mjs",
+      "node": "./fesm2015/spartacus-setup.mjs",
+      "default": "./fesm2020/spartacus-setup.mjs"
+    },
+    "./ssr": {
+      "types": "./ssr/index.d.ts",
+      "esm2020": "./esm2020/ssr/spartacus-setup-ssr.mjs",
+      "es2020": "./fesm2020/spartacus-setup-ssr.mjs",
+      "es2015": "./fesm2015/spartacus-setup-ssr.mjs",
+      "node": "./fesm2015/spartacus-setup-ssr.mjs",
+      "default": "./fesm2020/spartacus-setup-ssr.mjs"
+    }
+  },
+  "sideEffects": false
+}

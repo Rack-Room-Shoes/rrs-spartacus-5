@@ -1,0 +1,50 @@
+/*
+ * SPDX-FileCopyrightText: 2022 SAP Spartacus team <spartacus-team@sap.com>
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+import { Injectable } from '@angular/core';
+import { GlobalMessageType } from '@spartacus/core';
+import { ReplaySubject, Subject } from 'rxjs';
+import * as i0 from "@angular/core";
+const DEFAULT_INFO_TIMEOUT = 3000;
+export class MessageService {
+    constructor() {
+        this.data$ = new ReplaySubject();
+    }
+    get() {
+        return this.data$;
+    }
+    add(message) {
+        message = { ...this.getDefaultMessage(message), ...message };
+        message.events = new Subject();
+        this.data$.next(message);
+        return message.events;
+    }
+    close(message) {
+        message?.next({ close: true });
+    }
+    /**
+     * Sets the message type to INFO, and adds a default timeout
+     * for info messages.
+     */
+    getDefaultMessage(message) {
+        const defaultMessage = {
+            type: GlobalMessageType.MSG_TYPE_INFO,
+        };
+        if (!message.type ||
+            (message.type === GlobalMessageType.MSG_TYPE_INFO && !message.timeout)) {
+            defaultMessage.timeout = DEFAULT_INFO_TIMEOUT;
+        }
+        return defaultMessage;
+    }
+    clear() {
+        this.data$.next();
+    }
+}
+MessageService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.3", ngImport: i0, type: MessageService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+MessageService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.2.3", ngImport: i0, type: MessageService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.3", ngImport: i0, type: MessageService, decorators: [{
+            type: Injectable
+        }] });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWVzc2FnZS5zZXJ2aWNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vLi4vZmVhdHVyZS1saWJzL29yZ2FuaXphdGlvbi9hZG1pbmlzdHJhdGlvbi9jb21wb25lbnRzL3NoYXJlZC9tZXNzYWdlL3NlcnZpY2VzL21lc3NhZ2Uuc2VydmljZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7OztHQUlHO0FBRUgsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUMzQyxPQUFPLEVBQUUsaUJBQWlCLEVBQUUsTUFBTSxpQkFBaUIsQ0FBQztBQUNwRCxPQUFPLEVBQWMsYUFBYSxFQUFFLE9BQU8sRUFBRSxNQUFNLE1BQU0sQ0FBQzs7QUFHMUQsTUFBTSxvQkFBb0IsR0FBRyxJQUFJLENBQUM7QUFHbEMsTUFBTSxPQUFPLGNBQWM7SUFEM0I7UUFLWSxVQUFLLEdBQXFCLElBQUksYUFBYSxFQUFFLENBQUM7S0FxQ3pEO0lBbkNDLEdBQUc7UUFDRCxPQUFPLElBQUksQ0FBQyxLQUFLLENBQUM7SUFDcEIsQ0FBQztJQUVELEdBQUcsQ0FBQyxPQUFVO1FBQ1osT0FBTyxHQUFHLEVBQUUsR0FBRyxJQUFJLENBQUMsaUJBQWlCLENBQUMsT0FBTyxDQUFDLEVBQUUsR0FBRyxPQUFPLEVBQUUsQ0FBQztRQUM3RCxPQUFPLENBQUMsTUFBTSxHQUFHLElBQUksT0FBTyxFQUFLLENBQUM7UUFDbEMsSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLENBQUM7UUFDekIsT0FBTyxPQUFPLENBQUMsTUFBTSxDQUFDO0lBQ3hCLENBQUM7SUFFRCxLQUFLLENBQUMsT0FBeUM7UUFDN0MsT0FBTyxFQUFFLElBQUksQ0FBQyxFQUFFLEtBQUssRUFBRSxJQUFJLEVBQUUsQ0FBQyxDQUFDO0lBQ2pDLENBQUM7SUFFRDs7O09BR0c7SUFDTyxpQkFBaUIsQ0FBQyxPQUFVO1FBQ3BDLE1BQU0sY0FBYyxHQUFnQjtZQUNsQyxJQUFJLEVBQUUsaUJBQWlCLENBQUMsYUFBYTtTQUN0QyxDQUFDO1FBQ0YsSUFDRSxDQUFDLE9BQU8sQ0FBQyxJQUFJO1lBQ2IsQ0FBQyxPQUFPLENBQUMsSUFBSSxLQUFLLGlCQUFpQixDQUFDLGFBQWEsSUFBSSxDQUFDLE9BQU8sQ0FBQyxPQUFPLENBQUMsRUFDdEU7WUFDQSxjQUFjLENBQUMsT0FBTyxHQUFHLG9CQUFvQixDQUFDO1NBQy9DO1FBQ0QsT0FBTyxjQUFjLENBQUM7SUFDeEIsQ0FBQztJQUVELEtBQUs7UUFDSCxJQUFJLENBQUMsS0FBSyxDQUFDLElBQUksRUFBRSxDQUFDO0lBQ3BCLENBQUM7OzJHQXhDVSxjQUFjOytHQUFkLGNBQWM7MkZBQWQsY0FBYztrQkFEMUIsVUFBVSIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBTUERYLUZpbGVDb3B5cmlnaHRUZXh0OiAyMDIyIFNBUCBTcGFydGFjdXMgdGVhbSA8c3BhcnRhY3VzLXRlYW1Ac2FwLmNvbT5cbiAqXG4gKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogQXBhY2hlLTIuMFxuICovXG5cbmltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IEdsb2JhbE1lc3NhZ2VUeXBlIH0gZnJvbSAnQHNwYXJ0YWN1cy9jb3JlJztcbmltcG9ydCB7IE9ic2VydmFibGUsIFJlcGxheVN1YmplY3QsIFN1YmplY3QgfSBmcm9tICdyeGpzJztcbmltcG9ydCB7IE1lc3NhZ2VEYXRhLCBNZXNzYWdlRXZlbnREYXRhIH0gZnJvbSAnLi4vbWVzc2FnZS5tb2RlbCc7XG5cbmNvbnN0IERFRkFVTFRfSU5GT19USU1FT1VUID0gMzAwMDtcblxuQEluamVjdGFibGUoKVxuZXhwb3J0IGNsYXNzIE1lc3NhZ2VTZXJ2aWNlPFxuICBPIGV4dGVuZHMgTWVzc2FnZUV2ZW50RGF0YSA9IE1lc3NhZ2VFdmVudERhdGEsXG4gIFQgZXh0ZW5kcyBNZXNzYWdlRGF0YTxPPiA9IE1lc3NhZ2VEYXRhPE8+XG4+IHtcbiAgcHJvdGVjdGVkIGRhdGEkOiBSZXBsYXlTdWJqZWN0PFQ+ID0gbmV3IFJlcGxheVN1YmplY3QoKTtcblxuICBnZXQoKTogT2JzZXJ2YWJsZTxUPiB7XG4gICAgcmV0dXJuIHRoaXMuZGF0YSQ7XG4gIH1cblxuICBhZGQobWVzc2FnZTogVCk6IFN1YmplY3Q8Tz4ge1xuICAgIG1lc3NhZ2UgPSB7IC4uLnRoaXMuZ2V0RGVmYXVsdE1lc3NhZ2UobWVzc2FnZSksIC4uLm1lc3NhZ2UgfTtcbiAgICBtZXNzYWdlLmV2ZW50cyA9IG5ldyBTdWJqZWN0PE8+KCk7XG4gICAgdGhpcy5kYXRhJC5uZXh0KG1lc3NhZ2UpO1xuICAgIHJldHVybiBtZXNzYWdlLmV2ZW50cztcbiAgfVxuXG4gIGNsb3NlKG1lc3NhZ2U6IFN1YmplY3Q8TWVzc2FnZUV2ZW50RGF0YT4gfCBudWxsKSB7XG4gICAgbWVzc2FnZT8ubmV4dCh7IGNsb3NlOiB0cnVlIH0pO1xuICB9XG5cbiAgLyoqXG4gICAqIFNldHMgdGhlIG1lc3NhZ2UgdHlwZSB0byBJTkZPLCBhbmQgYWRkcyBhIGRlZmF1bHQgdGltZW91dFxuICAgKiBmb3IgaW5mbyBtZXNzYWdlcy5cbiAgICovXG4gIHByb3RlY3RlZCBnZXREZWZhdWx0TWVzc2FnZShtZXNzYWdlOiBUKTogTWVzc2FnZURhdGEge1xuICAgIGNvbnN0IGRlZmF1bHRNZXNzYWdlOiBNZXNzYWdlRGF0YSA9IHtcbiAgICAgIHR5cGU6IEdsb2JhbE1lc3NhZ2VUeXBlLk1TR19UWVBFX0lORk8sXG4gICAgfTtcbiAgICBpZiAoXG4gICAgICAhbWVzc2FnZS50eXBlIHx8XG4gICAgICAobWVzc2FnZS50eXBlID09PSBHbG9iYWxNZXNzYWdlVHlwZS5NU0dfVFlQRV9JTkZPICYmICFtZXNzYWdlLnRpbWVvdXQpXG4gICAgKSB7XG4gICAgICBkZWZhdWx0TWVzc2FnZS50aW1lb3V0ID0gREVGQVVMVF9JTkZPX1RJTUVPVVQ7XG4gICAgfVxuICAgIHJldHVybiBkZWZhdWx0TWVzc2FnZTtcbiAgfVxuXG4gIGNsZWFyKCk6IHZvaWQge1xuICAgIHRoaXMuZGF0YSQubmV4dCgpO1xuICB9XG59XG4iXX0=

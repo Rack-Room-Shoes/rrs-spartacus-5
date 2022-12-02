@@ -1,0 +1,31 @@
+import { BaseSiteService, WindowRef } from '@spartacus/core';
+import { Observable } from 'rxjs';
+import { CdsConfig } from '../../config/index';
+import { DebugEvent, ProfileTagPushEvent } from '../model/profile-tag.model';
+import * as i0 from "@angular/core";
+export declare class ProfileTagEventService {
+    private winRef;
+    private config;
+    private baseSiteService;
+    private platform;
+    latestConsentReference: any;
+    profileTagDebug: boolean;
+    private consentReference$;
+    private profileTagWindow;
+    private profileTagEvents$;
+    constructor(winRef: WindowRef, config: CdsConfig, baseSiteService: BaseSiteService, platform: any);
+    getProfileTagEvents(): Observable<string | DebugEvent | Event>;
+    getConsentReference(): Observable<string>;
+    handleConsentWithdrawn(): void;
+    addTracker(): Observable<string>;
+    notifyProfileTagOfEventOccurence(event: ProfileTagPushEvent): void;
+    private setConsentReference;
+    private debugModeChanged;
+    private createConfig;
+    private isScriptLoaded;
+    private addScript;
+    private initWindow;
+    private exposeConfig;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ProfileTagEventService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ProfileTagEventService>;
+}

@@ -1,0 +1,28 @@
+/*
+ * SPDX-FileCopyrightText: 2022 SAP Spartacus team <spartacus-team@sap.com>
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+import { HttpClient } from '@angular/common/http';
+import { APP_INITIALIZER, Optional } from '@angular/core';
+import { ConfigInitializerService } from '../../config/config-initializer/config-initializer.service';
+import { LanguageService } from '../../site-context/facade/language.service';
+import { SERVER_REQUEST_ORIGIN } from '../../util/ssr.tokens';
+import { i18nextInit, SiteContextI18nextSynchronizer } from './i18next-init';
+import { I18NEXT_INSTANCE } from './i18next-instance';
+export const i18nextProviders = [
+    {
+        provide: APP_INITIALIZER,
+        useFactory: i18nextInit,
+        deps: [
+            I18NEXT_INSTANCE,
+            ConfigInitializerService,
+            LanguageService,
+            HttpClient,
+            [new Optional(), SERVER_REQUEST_ORIGIN],
+            SiteContextI18nextSynchronizer,
+        ],
+        multi: true,
+    },
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaTE4bmV4dC1wcm92aWRlcnMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9jb3JlL3NyYy9pMThuL2kxOG5leHQvaTE4bmV4dC1wcm92aWRlcnMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7R0FJRztBQUVILE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxzQkFBc0IsQ0FBQztBQUNsRCxPQUFPLEVBQUUsZUFBZSxFQUFFLFFBQVEsRUFBWSxNQUFNLGVBQWUsQ0FBQztBQUNwRSxPQUFPLEVBQUUsd0JBQXdCLEVBQUUsTUFBTSw0REFBNEQsQ0FBQztBQUN0RyxPQUFPLEVBQUUsZUFBZSxFQUFFLE1BQU0sNENBQTRDLENBQUM7QUFDN0UsT0FBTyxFQUFFLHFCQUFxQixFQUFFLE1BQU0sdUJBQXVCLENBQUM7QUFDOUQsT0FBTyxFQUFFLFdBQVcsRUFBRSw4QkFBOEIsRUFBRSxNQUFNLGdCQUFnQixDQUFDO0FBQzdFLE9BQU8sRUFBRSxnQkFBZ0IsRUFBRSxNQUFNLG9CQUFvQixDQUFDO0FBRXRELE1BQU0sQ0FBQyxNQUFNLGdCQUFnQixHQUFlO0lBQzFDO1FBQ0UsT0FBTyxFQUFFLGVBQWU7UUFDeEIsVUFBVSxFQUFFLFdBQVc7UUFDdkIsSUFBSSxFQUFFO1lBQ0osZ0JBQWdCO1lBQ2hCLHdCQUF3QjtZQUN4QixlQUFlO1lBQ2YsVUFBVTtZQUNWLENBQUMsSUFBSSxRQUFRLEVBQUUsRUFBRSxxQkFBcUIsQ0FBQztZQUN2Qyw4QkFBOEI7U0FDL0I7UUFDRCxLQUFLLEVBQUUsSUFBSTtLQUNaO0NBQ0YsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBTUERYLUZpbGVDb3B5cmlnaHRUZXh0OiAyMDIyIFNBUCBTcGFydGFjdXMgdGVhbSA8c3BhcnRhY3VzLXRlYW1Ac2FwLmNvbT5cbiAqXG4gKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogQXBhY2hlLTIuMFxuICovXG5cbmltcG9ydCB7IEh0dHBDbGllbnQgfSBmcm9tICdAYW5ndWxhci9jb21tb24vaHR0cCc7XG5pbXBvcnQgeyBBUFBfSU5JVElBTElaRVIsIE9wdGlvbmFsLCBQcm92aWRlciB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgQ29uZmlnSW5pdGlhbGl6ZXJTZXJ2aWNlIH0gZnJvbSAnLi4vLi4vY29uZmlnL2NvbmZpZy1pbml0aWFsaXplci9jb25maWctaW5pdGlhbGl6ZXIuc2VydmljZSc7XG5pbXBvcnQgeyBMYW5ndWFnZVNlcnZpY2UgfSBmcm9tICcuLi8uLi9zaXRlLWNvbnRleHQvZmFjYWRlL2xhbmd1YWdlLnNlcnZpY2UnO1xuaW1wb3J0IHsgU0VSVkVSX1JFUVVFU1RfT1JJR0lOIH0gZnJvbSAnLi4vLi4vdXRpbC9zc3IudG9rZW5zJztcbmltcG9ydCB7IGkxOG5leHRJbml0LCBTaXRlQ29udGV4dEkxOG5leHRTeW5jaHJvbml6ZXIgfSBmcm9tICcuL2kxOG5leHQtaW5pdCc7XG5pbXBvcnQgeyBJMThORVhUX0lOU1RBTkNFIH0gZnJvbSAnLi9pMThuZXh0LWluc3RhbmNlJztcblxuZXhwb3J0IGNvbnN0IGkxOG5leHRQcm92aWRlcnM6IFByb3ZpZGVyW10gPSBbXG4gIHtcbiAgICBwcm92aWRlOiBBUFBfSU5JVElBTElaRVIsXG4gICAgdXNlRmFjdG9yeTogaTE4bmV4dEluaXQsXG4gICAgZGVwczogW1xuICAgICAgSTE4TkVYVF9JTlNUQU5DRSxcbiAgICAgIENvbmZpZ0luaXRpYWxpemVyU2VydmljZSxcbiAgICAgIExhbmd1YWdlU2VydmljZSxcbiAgICAgIEh0dHBDbGllbnQsXG4gICAgICBbbmV3IE9wdGlvbmFsKCksIFNFUlZFUl9SRVFVRVNUX09SSUdJTl0sXG4gICAgICBTaXRlQ29udGV4dEkxOG5leHRTeW5jaHJvbml6ZXIsXG4gICAgXSxcbiAgICBtdWx0aTogdHJ1ZSxcbiAgfSxcbl07XG4iXX0=

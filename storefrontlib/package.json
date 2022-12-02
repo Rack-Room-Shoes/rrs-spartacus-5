@@ -1,0 +1,53 @@
+{
+  "name": "@spartacus/storefront",
+  "version": "5.0.0",
+  "keywords": [
+    "spartacus",
+    "storefront",
+    "angular"
+  ],
+  "homepage": "https://github.com/SAP/spartacus",
+  "repository": "https://github.com/SAP/spartacus/tree/develop/projects/storefrontlib",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "tslib": "^2.4.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^14.2.3",
+    "@angular/core": "^14.2.3",
+    "@angular/forms": "^14.2.3",
+    "@angular/platform-browser": "^14.2.3",
+    "@angular/router": "^14.2.3",
+    "@angular/service-worker": "^14.2.3",
+    "@ng-select/ng-select": "^9.0.2",
+    "@ngrx/effects": "^14.3.0",
+    "@ngrx/router-store": "^14.3.0",
+    "@ngrx/store": "^14.3.0",
+    "@spartacus/core": "5.0.0",
+    "ngx-infinite-scroll": "^14.0.0",
+    "rxjs": "^6.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "module": "fesm2015/spartacus-storefront.mjs",
+  "es2020": "fesm2020/spartacus-storefront.mjs",
+  "esm2020": "esm2020/spartacus-storefront.mjs",
+  "fesm2020": "fesm2020/spartacus-storefront.mjs",
+  "fesm2015": "fesm2015/spartacus-storefront.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/spartacus-storefront.mjs",
+      "es2020": "./fesm2020/spartacus-storefront.mjs",
+      "es2015": "./fesm2015/spartacus-storefront.mjs",
+      "node": "./fesm2015/spartacus-storefront.mjs",
+      "default": "./fesm2020/spartacus-storefront.mjs"
+    }
+  },
+  "sideEffects": false
+}
